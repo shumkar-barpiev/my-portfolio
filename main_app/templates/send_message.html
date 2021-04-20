@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .new{
+        border-radius:15px;
+        background: #d5dbda;
+        position: absolute;
+        top: 35%;
+        left: 40%;
+        width: 70%;
+        margin: -15% 0 0 -25%;
+        padding: 30px;
+        box-shadow: 5px 10px 18px #0c453d;
+    }
+
+    .btn {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 40%;
+      background-color: #f1f1f1;
+      color: black;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+}
+    .btn:hover {
+      background-color: black;
+      color: white;
+    }
+
+</style>
+
+
+        <div class="new">
+            <h1 style="text-align:center">Thanks, {{username}}!</h1>
+            <hr style="margin-bottom:24px;">
+            <p>We received your email and will respond shortly...</p>
+            <hr style="margin-bottom:24px;">
+            <a class="btn" href="/">CLOSE</a>
+        </div>
+
+{% endblock %}

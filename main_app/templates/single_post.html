@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{post.project_title}}
+{% endblock %}
+
+{% block content %}
+<style>
+    .new{
+        border-radius:15px;
+        background: #d5dbda;
+        position: absolute;
+        top: 35%;
+        left: 40%;
+        width: 70%;
+        margin: -15% 0 0 -25%;
+        padding: 30px;
+        box-shadow: 5px 10px 18px #0c453d;
+
+    }
+    .imgr{
+        width: 100%;
+    }
+    .btn {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 40%;
+      background-color: #f1f1f1;
+      color: black;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+}
+    .btn:hover {
+      background-color: black;
+      color: white;
+    }
+
+</style>
+
+
+        <div class="new">
+            <img src="{{ post.project_img.url }}" class="imgr" alt="">
+            <h1>{{post.project_title}}</h1>
+            <hr style="margin-bottom:24px;">
+            <p>{{post.project_description|safe}}</p>
+            <hr style="margin-bottom:24px;">
+            <a class="btn" href="/">CLOSE</a>
+        </div>
+
+
+
+
+{% endblock %}

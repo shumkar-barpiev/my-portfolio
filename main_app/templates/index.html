@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <header id="masthead" class="site-header" data-anchor-target=".hero" data-top="background: rgba(255,255,255,0); padding: 30px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0);" data-top-bottom="background: rgba(255,255,255,1); padding: 10px 0; box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.2);">
+        <nav id="primary-navigation" class="site-navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+
+                    <button type="button" class="navbar-toggle collapsed" data-target="#portfolio-perfect-collapse" aria-expanded="false" >
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                    <a href="#hero" class="site-logo"><img src="{% static 'images/my_logo.png' %}" alt="logo"></a>
+
+                </div><!-- /.navbar-header -->
+                <div class="main-menu" id="portfolio-perfect-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="page-scroll"><a href="#hero">Home Page</a></li>
+                        <li class="page-scroll"><a href="#about">About Myself</a></li>
+                        <li class="page-scroll"><a href="#service">What I do</a></li>
+                        <li class="page-scroll"><a href="#portfolio">My Recent Works</a></li>
+                        <li class="page-scroll"><a href="#contact">Contact</a></li>
+                    </ul><!-- /.navbar-nav -->
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav><!-- /.primary-navigation -->
+    </header><!-- /#header -->
+
+    <div id="hero" class="hero">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h1>{{developer.full_name}}</h1>
+                    <div class="page-scroll">
+                        <p class="job-title">{{developer.kind_of_developer}}</p>
+                        <a href="#contact" class="btn btn-fill ">Contact me</a>
+                        <div class="clearfix visible-xxs"></div>
+                        <a href="#portfolio" class="btn btn-border">More...</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 text-right">
+                    <img src="{{ developer.developer_img.url }}" alt="{{developer.full_name}}">
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.hero -->
+
+    <main id="main" class="site-main">
+
+        <section id="about" class="site-section section-about text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <h2>About Myself</h2>
+                        <img src="{% static 'images/lines.svg' %}" class="img-lines" alt="lines">
+                        <p>{{about_info.about_description}}</p>
+                        <a href="{{about_info.my_cv_file.url}}" class="btn btn-fill" target="_blank" download="{{about_info.my_cv_file.url}}">Download my cv</a>
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.secton-about -->
+
+        <section class="site-section section-skills">
+            <div class="container">
+                <div class="text-center">
+                    <h3>My Skills</h3>
+                    <img src="{% static 'images/lines.svg' %}" class="img-lines" alt="lines">
+                </div>
+
+                <div class="row">
+                    {% for skill in skills %}
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4 style="text-align: center">{{skill.skills_title}}</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="{{skill.skills_number}}">{{skill.skills_number}}%</div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                    </div>
+                     {% endfor %}
+                </div>
+                <div class="site-section section-skills">
+                    <div class="text-center">
+                    <h3>Languages</h3>
+                    <img src="{% static 'images/lines.svg' %}" class="img-lines" alt="lines">
+                </div>
+
+                <div class="row">
+                    {% for language in languages %}
+                    <div class="col-md-4">
+                        <div class="skill">
+                            <h4 style="text-align: center">{{language.language_title}}</h4>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" data-transitiongoal="{{language.language_degree}}">{{language.language_degree}}%</div><!-- /.progress-bar -->
+                            </div><!-- /.progress -->
+                        </div><!-- /.skill -->
+                    </div>
+                     {% endfor %}
+                </div>
+                </div>
+
+            </div>
+        </section><!-- /.secton-skills -->
+
+        <section id="service" class="site-section section-services overlay text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>What i do</h3>
+                        <img src="{% static 'images/lines.svg' %}" class="img-lines" alt="lines">
+                    </div>
+                    {% for post in what_i_do %}
+                    <div class="col-sm-4">
+                        <div class="service">
+                            <img src="{% static 'images/front-end.svg' %}" alt="Front End Developer">
+                            <h4>{{post.kind_dev_title}}</h4>
+                            <p>{{post.kind_dev_description}}</p>
+                        </div><!-- /.service -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section><!-- /.secton-services -->
+
+        <section id="portfolio" class="site-section section-portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h3>My recent Works</h3>
+                    <img src="{% static 'images/lines.svg' %}" class="img-lines" alt="lines">
+                </div>
+                {% for project in all_projects %}
+                <div class="row">
+                    <div class="col-md-4 col-xs-6">
+                        <div class="portfolio-item">
+
+                                <img src="{{ project.project_img.url }}" class="img-res" alt="">
+                                <div class="portfolio-item-info">
+                                    <h4>{{project.project_title}}</h4>
+                                    <a href="{{project.get_absolute_url}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                    <a href="{{project.project_link}}"><span class="glyphicon glyphicon-link"></span></a>
+                                </div><!-- /.portfolio-item-info -->
+                        </div><!-- /.portfolio-item -->
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section><!-- /.secton-portfolio -->
+
+        <section class="site-section section-counters text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <p class="counter start" data-to="{{experience_info.experience_year}}" data-speed="2000">0</p>
+                        <h4>Years Experience</h4>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <p class="counter start" data-to="{{experience_info.projects_number}}" data-speed="2000">0</p>
+                        <h4>Projects Delivered</h4>      
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <p id="infinity" class="counter" data-from="0" data-to="1" data-speed="1000">0</p>
+                        <h4>Seconds on this site!<br>What are you waiting for?</h4>
+                    </div>
+                </div>
+            </div>
+        </section><!-- /.section-counters -->
+
+        <section id="contact" class="site-section section-form text-center">
+            <div class="container">
+
+                <h3>Contact</h3>
+                <img src="{% static 'images/lines.svg' %}" class="img-lines" alt="lines">
+                <form action="/sendmessage" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" name="nameUser" class="form-control mt-x-0" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="email" name="emailAdressUser" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="password" name="emailAdressPassword" class="form-control" placeholder="Your Email-Account Password" required>
+                        </div>
+                        <div class="col-sm-12">
+                            <textarea name="message" id="message" class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-border" type="submit">Send Message <span class="glyphicon glyphicon-send"></span></button>
+                </form>
+
+                <a href="{{social_links.facebook_link}}" class="fa fa-facebook"></a>
+                <a href="{{social_links.github_link}}" class="fa fa-github"></a>
+                <a href="{{social_links.instagram_link}}" class="fa fa-instagram"></a>
+                <a href="{{social_links.youtube_link}}" class="fa fa-youtube"></a>
+                <a href="{{social_links.telegram_link}}" class="fa fa-telegram"></a>
+
+            </div>
+        </section><!-- /.section-form -->
+
+    </main><!-- /#main -->
+
+     <footer class="bg-lighst text-center text-lg-start">
+         <div class="text-center p-3" style="margin-top=40px, padding=20px, backgroundColor= rgba(0, 0, 0, 0.2)">
+             &copy; All rights reserved ({{experience_info.starting_and_nowadays_years_dev_title}})
+             <p>e-mail: {{developer.dev_email_account}}</p>
+         </div>
+     </footer>
+
+{% endblock %}
